@@ -5,10 +5,11 @@
 
 
 import matlab.engine
-from heartnet_v1 import heartnet
+# from heartnet_v1 import heartnet
 import numpy as np
+# from matplotlib import pyplot as plt
 import flask
-import io
+# import io
 
 app=flask.Flask(__name__)
 model=None
@@ -72,7 +73,8 @@ def predict():
         return flask.jsonify(data)
     else:
         data["success"]=True
-        print(input_request)
+        # dt=np.dtype(input_request)
+        # print(dt.itemsize,dt.name)
         return flask.jsonify(data)
 
 
@@ -91,5 +93,5 @@ def predict():
 
 
 if __name__=='__main__':
-    app.run(debug=True,port=5000)
+    app.run(host='0.0.0.0',debug=True,port=5000)
 
