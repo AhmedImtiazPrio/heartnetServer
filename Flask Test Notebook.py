@@ -19,7 +19,7 @@ load_path='/media/taufiq/Data/heart_sound/models/fold1_noFIR 2018-02-02 09:52:02
 # In[1]:
 
 
-def preprocessing(PCG,eng):
+def preprocessing(PCG,eng,target_fs,in_fs):
     PCG = eng.resample(PCG,matlab.double([target_fs]),matlab.double([in_fs]))
     PCG = eng.butterworth_low_pass_filter(PCG,matlab.double([2]),matlab.double([400]),matlab.double([1000]))
     PCG = eng.butterworth_high_pass_filter(PCG,matlab.double([2]),matlab.double([25]),matlab.double([1000]))
@@ -39,7 +39,7 @@ def matlab_init():
 # In[25]:
 
 
-def segmentation(PCG,eng):
+def segmentation(PCG,eng,nsamp):
     assigned_states = eng.runSpringerSegmentationAlgorithmpython(PCG,matlab.double([target_fs]))
     idx_states,last_idx=eng.get_states_python(assigned_states,nargout=2)
     
@@ -65,9 +65,12 @@ def segmentation(PCG,eng):
 # In[29]:
 
 
-@app.route("/predict")
+@app.route("/predict",methods=["POST"])
 def predict():
-    return 'Test server running'
+    data = {"success": False}
+    if flask.request.method=="POST":
+        return flask.jsonify(data)
+
 
 
 # In[30]:
