@@ -64,12 +64,26 @@ def segmentation(PCG,eng,nsamp):
 
 # In[29]:
 
-
 @app.route("/predict",methods=["POST"])
 def predict():
-    data = {"success": False}
-    if flask.request.method=="POST":
+    data={"success":False}
+    input_request = flask.request.data
+    if not input_request:
         return flask.jsonify(data)
+    else:
+        data["success"]=True
+        print(input_request)
+        return flask.jsonify(data)
+
+
+# @app.route("/predict",methods=["POST"])
+# def predict():
+#     data = {"success": False}
+#     if flask.request.method=="POST":
+#         input_request = flask.request.data
+#         return flask.jsonify(data)
+#     else:
+#         return flask.jsonify({"error":"Couldn't understand request"})
 
 
 
