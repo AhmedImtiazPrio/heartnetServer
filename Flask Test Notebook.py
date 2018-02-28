@@ -119,4 +119,5 @@ if __name__=='__main__':
     # app.run(host='127.0.1.2',debug=True,port=5000)
     eng = matlab_init()
     model = heartnet(load_path)
-    app.run(host='0.0.0.0',port=5000)
+    app.run(host='0.0.0.0',port=5000) ## debug makes the process
+                                    ## DONT debug and classfy
