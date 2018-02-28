@@ -65,7 +65,7 @@ def segmentation(PCG,eng,nsamp):
 
 # In[29]:
 
-@app.route("/predict",methods=["POST"])
+@app.route("/predict",methods=["POST","GET"])
 def predict():
     data={"success":False}
     input_request = flask.request.data
@@ -93,5 +93,5 @@ def predict():
 
 
 if __name__=='__main__':
-    app.run(host='127.0.1.2',debug=True,port=5000)
-
+    # app.run(host='127.0.1.2',debug=True,port=5000)
+    app.run(host='0.0.0.0',port=5000)
