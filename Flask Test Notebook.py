@@ -5,18 +5,20 @@
 
 
 import matlab.engine
-# from heartnet_v1 import heartnet
+from heartnet_v1 import heartnet
 import numpy as np
-# from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt
 import flask
+from scipy.io.wavfile import write
 # import io
 
 app=flask.Flask(__name__)
 model=None
 
 load_path='/media/taufiq/Data/heart_sound/models/fold1_noFIR 2018-02-02 09:52:02.463256/weights.0148-0.8902.hdf5'
-
-
+target_fs=1000
+in_fs=4000
+nsamp=2500
 # In[1]:
 
 
@@ -40,7 +42,7 @@ def matlab_init():
 # In[25]:
 
 
-def segmentation(PCG,eng,nsamp):
+def segmentation(PCG,eng,nsamp,target_fs):
     assigned_states = eng.runSpringerSegmentationAlgorithmpython(PCG,matlab.double([target_fs]))
     idx_states,last_idx=eng.get_states_python(assigned_states,nargout=2)
     
@@ -50,6 +52,7 @@ def segmentation(PCG,eng,nsamp):
     idx_states=idx_states-1 ## -1 for python indexing compatibility 
     last_idx=last_idx-1
     PCG = np.hstack(np.asarray(PCG))
+    PCG = PCG/np.max(PCG)
     x = np.zeros([ncc,nsamp],dtype=np.double)
 
     for row in range(ncc):
@@ -72,7 +75,25 @@ def predict():
     if not input_request:
         return flask.jsonify(data)
     else:
-        data["success"]=True
+        print(len(input_request))
+        print(type(input_request))
+        parsed = np.fromstring(input_request, np.int16)
+        PCG = parsed.astype(np.float32) ## typecast for keras
+        PCG = matlab.double([np.ndarray.tolist(PCG)]) ## Typecast for matlab
+        PCG = preprocessing(PCG=PCG,eng=eng,in_fs=in_fs,target_fs=target_fs)
+        x = segmentation(PCG=PCG,eng=eng,nsamp=nsamp,target_fs=target_fs)
+        y_pred=model.predict(x)
+        print(y_pred)
+        if np.mean(y_pred) > .5:
+            print("Abnormal")
+            data["success"] = True
+            data["result"] = "Abnormal"
+        else:
+            print("Normal")
+            data["success"] = True
+            data["result"] = "Normal"
+        # write('test.wav',4000,parsed)
+        # plt.plot(np.fromstring(input_request,float))
         # dt=np.dtype(input_request)
         # print(dt.itemsize,dt.name)
         return flask.jsonify(data)
@@ -94,4 +115,6 @@ def predict():
 
 if __name__=='__main__':
     # app.run(host='127.0.1.2',debug=True,port=5000)
-    app.run(host='0.0.0.0',port=5000)
+    eng = matlab_init()
+    model = heartnet(load_path)
+    app.run(host='0.0.0.0',debug=True,port=5000)
