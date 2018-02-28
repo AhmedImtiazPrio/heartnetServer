@@ -7,6 +7,7 @@
 import matlab.engine
 from heartnet_v1 import heartnet
 import numpy as np
+from keras.backend import cast_to_floatx
 from matplotlib import pyplot as plt
 import flask
 from scipy.io.wavfile import write
@@ -53,6 +54,7 @@ def segmentation(PCG,eng,nsamp,target_fs):
     last_idx=last_idx-1
     PCG = np.hstack(np.asarray(PCG))
     PCG = PCG/np.max(PCG)
+    PCG = cast_to_floatx(PCG)
     x = np.zeros([ncc,nsamp],dtype=np.double)
 
     for row in range(ncc):
@@ -117,4 +119,4 @@ if __name__=='__main__':
     # app.run(host='127.0.1.2',debug=True,port=5000)
     eng = matlab_init()
     model = heartnet(load_path)
-    app.run(host='0.0.0.0',debug=True,port=5000)
+    app.run(host='0.0.0.0',port=5000)

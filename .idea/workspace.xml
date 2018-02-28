@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5741a574-7da9-4ab6-ad69-244129b3e957" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Flask Test Notebook-checkpoint.ipynb" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Flask Test Notebook-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/Flask Test Notebook.ipynb" afterPath="$PROJECT_DIR$/Flask Test Notebook.ipynb" />
       <change beforePath="$PROJECT_DIR$/Flask Test Notebook.py" afterPath="$PROJECT_DIR$/Flask Test Notebook.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +16,8 @@
       <file leaf-file-name="Flask Test Notebook.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Flask Test Notebook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="85" column="21" lean-forward="true" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+            <state relative-caret-position="642">
+              <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding>
                 <element signature="e#30#50#0" expanded="true" />
               </folding>
@@ -180,8 +177,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Flask Test Notebook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="85" column="21" lean-forward="true" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+        <state relative-caret-position="642">
+          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding>
             <element signature="e#30#50#0" expanded="true" />
           </folding>
