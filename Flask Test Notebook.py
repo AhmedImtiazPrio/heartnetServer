@@ -10,13 +10,14 @@ import numpy as np
 from keras.backend import cast_to_floatx
 # from matplotlib import pyplot as plt
 import flask
+import os
 # from scipy.io.wavfile import write
 # import io
 
 app=flask.Flask(__name__)
 model=None
 
-load_path='/media/taufiq/Data/heart_sound/models/fold1_noFIR 2018-02-02 09:52:02.463256/weights.0148-0.8902.hdf5'
+load_path='weights.0148-0.8902.hdf5'
 target_fs=1000
 in_fs=4000
 nsamp=2500
@@ -36,7 +37,8 @@ def preprocessing(PCG,eng,target_fs,in_fs):
 
 def matlab_init():
     eng = matlab.engine.start_matlab()
-    eng.addpath('/media/taufiq/Data/heart_sound/Heart_Sound/codes/cristhian.potes-204/');
+    # eng.addpath('/media/taufiq/Data/heart_sound/Heart_Sound/codes/cristhian.potes-204/');
+    eng.addpath(os.path.join(os.getcwd(),'matfunctions/'))
     return eng
 
 
