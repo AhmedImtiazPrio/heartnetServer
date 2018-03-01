@@ -10,6 +10,7 @@ import numpy as np
 from keras.backend import cast_to_floatx
 # from matplotlib import pyplot as plt
 import flask
+from scipy.io.wavfile import write
 import os
 # from scipy.io.wavfile import write
 # import io
@@ -83,13 +84,14 @@ def predict():
         print(type(input_request))
         parsed = np.fromstring(input_request, np.int16)
         PCG = parsed.astype(np.float32) ## typecast for keras
+        write('test.wav_',4000,PCG)
         PCG = matlab.double([np.ndarray.tolist(PCG)]) ## Typecast for matlab
         PCG = preprocessing(PCG=PCG,eng=eng,in_fs=in_fs,target_fs=target_fs)
         x = segmentation(PCG=PCG,eng=eng,nsamp=nsamp,target_fs=target_fs)
         y_pred=model.predict(x)
         print(y_pred)
         print(np.mean(y_pred))
-        data["confidence"]=np.mean(y_pred)
+        data["confidence"]=str(np.mean(y_pred))
         if np.mean(y_pred) > .5:
             print("Abnormal")
             data["success"] = True
