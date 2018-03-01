@@ -8,9 +8,9 @@ import matlab.engine
 from heartnet_v1 import heartnet
 import numpy as np
 from keras.backend import cast_to_floatx
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 import flask
-from scipy.io.wavfile import write
+# from scipy.io.wavfile import write
 # import io
 
 app=flask.Flask(__name__)
@@ -86,6 +86,8 @@ def predict():
         x = segmentation(PCG=PCG,eng=eng,nsamp=nsamp,target_fs=target_fs)
         y_pred=model.predict(x)
         print(y_pred)
+        print(np.mean(y_pred))
+        data["confidence"]=np.mean(y_pred)
         if np.mean(y_pred) > .5:
             print("Abnormal")
             data["success"] = True
