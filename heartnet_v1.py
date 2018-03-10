@@ -72,7 +72,7 @@ def heartnet(load_path,activation_function='relu', bn_momentum=0.99, bias=False,
 
     input = Input(shape=(2500, 1))
 
-    coeff_path = '/media/taufiq/Data/heart_sound/feature/filterbankcoeff60.mat'
+    coeff_path = 'filterbankcoeff60.mat'
     coeff = tables.open_file(coeff_path)
     b1 = coeff.root.b1[:]
     b1 = np.hstack(b1)
