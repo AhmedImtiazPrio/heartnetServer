@@ -1,1 +1,4 @@
 weights.0148-0.8902.hdf5
+.idea
+.ipynb_checkpoints
+*.pyc
