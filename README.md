@@ -1,4 +1,4 @@
-Heartnet Development Server
+# Heartnet Development Server
 
 1. Go to https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html and follow instructions to install matlab engine
 
@@ -8,5 +8,5 @@ Heartnet Development Server
 
 4. Run 'Flask Test Notebook.py'
 
-For dependency issues email me at ahmed.imtiaz.prio@gmail.com
+#### For dependency issues email me at ahmed.imtiaz.prio@gmail.com
 
