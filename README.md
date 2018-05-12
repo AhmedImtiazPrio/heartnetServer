@@ -6,7 +6,15 @@
 
 3. Download 'weights.0148-0.8902.hdf5' to folder
 
-4. Run 'Flask Test Notebook.py'
+4. Run 'heartnetServer_test.py'
+
+# For Testing on pre-recorded PCG
+
+Run heartnetEval.py with --file argument:
+
+```
+python heartnetEval.py --file /home/downloads/path.wav
+```
 
 #### For dependency issues email me at ahmed.imtiaz.prio@gmail.com
 
