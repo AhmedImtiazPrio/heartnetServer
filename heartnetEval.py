@@ -30,8 +30,8 @@ if __name__=='__main__':
     x = segmentation(PCG=PCG, eng=eng, nsamp=nsamp, target_fs=target_fs)
     y_pred = model.predict(x,verbose=1)
 
-    print("Abnormal probability %f" % np.mean(y_pred))
     if np.mean(y_pred) > .5:
         print("Abnormal")
     else:
         print("Normal")
+    print("Probability %f" % np.mean(y_pred))
