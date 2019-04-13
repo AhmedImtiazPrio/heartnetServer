@@ -1,6 +1,6 @@
 numpy==1.13.3
 Flask==0.12.2
-Jinja2==2.10
+Jinja2==2.10.1
 matplotlib==2.1.0
 pandas==0.21.0
 tables==3.4.2
